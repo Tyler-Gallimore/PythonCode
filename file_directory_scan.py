@@ -27,8 +27,8 @@ def dir_search():
             egg = file_size(i)
             #bacon.update({str(i.name):file_size(i)})
             #egg.update(file_size(i))
-            #bacon.update({str(i.name):egg})
-            print(egg)
+            bacon.update({str(i.name):egg})
+    print(bacon)
     #return(bacon)
 
 
