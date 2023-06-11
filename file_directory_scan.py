@@ -1,35 +1,21 @@
 from pathlib import Path
 
-def file_size(item):
-    #test = Path(str(input("Enter a file path: ")))
-    test = item
-    result = {}    
+def final_code():
+    file_path = Path(str(input("Enter a file path: ")))
+    result = {}
     try:
-        if test == None:
-            test = Path.cwd()
-        for i in test.iterdir():
-            if i.is_file():
-                info = i.stat()
-                output = info.st_size
-                result.update({str(i.name):output})
+        if file_path == None:
+            file_path = Path.cwd()
+        for path in file_path.iterdir():
+            if path.is_file():
+                result[str(path)] = path.stat().st_size
+            if path.is_dir():
+                apple = {}
+                for item in path.iterdir():
+                    if item.is_file():
+                        apple[str(item)] = item.stat().st_size     
+                result[str(path)] = apple
     except:
         print("Invalid file path")
-    return(result)
-    
-    
-def dir_search():
-    file_path = Path(str(input("Enter a file path: ")))
-    bacon = {}
-    if file_path == None:
-        file_path = Path.cwd()
-    for i in file_path.iterdir():
-        if i.is_dir():
-            egg = file_size(i)
-            #bacon.update({str(i.name):file_size(i)})
-            #egg.update(file_size(i))
-            bacon.update({str(i.name):egg})
-    print(bacon)
-    #return(bacon)
+    return result
 
-
-dir_search()
